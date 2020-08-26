@@ -77,20 +77,20 @@ import {ExpirationPlugin} from 'workbox-expiration';
 // Use the imported Workbox libraries to implement caching,
 // routing, and other logic:
 precacheAndRoute(self.__WB_MANIFEST);
-/*  registerRoute(
+  registerRoute(
   ({request}) => request.destination === 'image',
   new CacheFirst({cacheName: 'images'}),
 );
 registerRoute(
   ({request}) => request.destination === 'image',
   ({cacheName: 'images'}),
-); */ 
+); 
 
 // Etc.
 registerRoute(
   /\.(?:png|gif|jpg|jpeg|svg)$/,
   new CacheFirst({
-    cacheName: 'images',
+    cacheName: 'image',
     plugins: [
       new ExpirationPlugin({
         maxEntries: 60,
