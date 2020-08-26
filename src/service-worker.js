@@ -1,4 +1,18 @@
-const version = 2
+const version = 3
+const oldVersion = version -1
+
+self.addEventListener('install', event =>{
+  console.log('install ' + version)
+  return self.skipWaiting()
+})
+
+self.addEventListener('activate', event => {
+  console.log('activate')
+  event.waitUntil(
+    caches.delete('design-cache' + oldVersion),
+    caches.delete('api-cache' + oldVersion)
+  )
+})
 
 workbox.setConfig({
     debug: false
