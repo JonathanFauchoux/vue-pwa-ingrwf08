@@ -99,3 +99,16 @@ registerRoute(
     ],
   })
 );
+
+registerRoute(
+  "https://todolala-5310e.firebaseio.com",
+  new CacheFirst({
+    cacheName: 'url',
+    plugins: [
+      new ExpirationPlugin({
+        maxEntries: 60,
+        maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+      }),
+    ],
+  })
+);
