@@ -1,6 +1,6 @@
 <template>
   <div class="installBtn">
-   <a href="#" @click.prevent="install()">Install App</a>
+   <a href="#" @click.prevent="install()" v-show="show">Install App</a>
   </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
     install(){
 
       //installBtn.style.display ="none"
-      this.show =false
+      this.show = false
       this.defferedPromt.prompt()
 
       this.defferedPromt.userChoice.then(choiceResult => {
