@@ -34,8 +34,8 @@ workbox.setConfig({
   );
   
   workbox.routing.registerRoute(
-    new RegExp("https://some-fancy-api.com"),
-    new workbox.strategies.NetworkFirst({
+    "https://some-fancy-api.com",
+    workbox.strategies.NetworkFirst({
       cacheName: "api"
     })
   );
