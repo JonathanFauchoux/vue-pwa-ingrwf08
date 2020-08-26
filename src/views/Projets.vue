@@ -27,7 +27,7 @@
       <div class="itemProjet" v-for="item in this.$store.getters.getProjets" :key="item.id">
         <h4 class="item-text">{{ item.title }}</h4>
         <p>{{ item.message }}</p>
-        <a class="link" :href="item.lien">lien projet</a>
+        <a target="_blank" class="link" :href="item.lien">lien projet</a>
         <p class="time">créé le : {{ item.created_at | heure(item.created_at) }}</p>
         <button class="deleteBtn" @click="deleteItemProjet(item.id)"></button>
       </div>
