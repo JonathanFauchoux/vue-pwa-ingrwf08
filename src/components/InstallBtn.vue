@@ -1,6 +1,6 @@
 <template>
   <div class="installBtn">
-   <a href="#" @click.prevent="install()" v-show="show">Install App</a>
+   <a href="#" @click.prevent="install()" v-show="defferedPromt">Install App</a>
   </div>
 </template>
 
