@@ -224,7 +224,7 @@ p{
 }
 .item-text{
   
-  text-align: start;
+  text-align: center;
   width: 100%;
 }
 #errors {
