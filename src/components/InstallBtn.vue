@@ -18,6 +18,7 @@ export default {
     install(){
 
       //installBtn.style.display ="none"
+      this.show =false
       this.defferedPromt.prompt()
 
       this.defferedPromt.userChoice.then(choiceResult => {
