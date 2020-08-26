@@ -13,9 +13,9 @@ module.exports = {
         short_name: "PWA_ingrwf08",
       },
       iconPaths:{
-        favicon32: 'src/assets/logo_48.png',
+        favicon32: 'src/assets/logo_96.png',
         favicon16: 'src/assets/logo_48.png',
-        appleTouchIcon: 'src/assets/logo_48.png',
+        appleTouchIcon: 'src/assets/logo_96.png',
         maskIcon: 'src/assets/logo_48.png',
         msTileImage: 'src/assets/logo_48.png'
       },
