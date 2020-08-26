@@ -1,4 +1,13 @@
-/* const version = 9
+
+import {precacheAndRoute} from 'workbox-precaching';
+import {registerRoute} from 'workbox-routing';
+import {CacheFirst} from 'workbox-strategies';
+import {ExpirationPlugin} from 'workbox-expiration';
+
+
+
+
+const version = 9
 const oldVersion = version -1
 
 
@@ -10,10 +19,11 @@ self.addEventListener('install', () =>{
 self.addEventListener('activate', event => {
   console.log('activate')
   event.waitUntil(
-    caches.delete('design' + oldVersion),
-    caches.delete('api' + oldVersion)
+    caches.delete('images' + oldVersion),
+    caches.delete('image' + oldVersion),
+    caches.delete('url' + oldVersion)
   )
-})  */
+})  
 /*
 workbox.setConfig({
     debug: false
@@ -69,10 +79,7 @@ workbox.setConfig({
 
   
 // These JavaScript module imports need to be bundled:
-import {precacheAndRoute} from 'workbox-precaching';
-import {registerRoute} from 'workbox-routing';
-import {CacheFirst} from 'workbox-strategies';
-import {ExpirationPlugin} from 'workbox-expiration';
+
 
 // Use the imported Workbox libraries to implement caching,
 // routing, and other logic:
@@ -81,10 +88,10 @@ precacheAndRoute(self.__WB_MANIFEST);
   ({request}) => request.destination === 'image',
   new CacheFirst({cacheName: 'images'}),
 );
-registerRoute(
+/* registerRoute(
   ({request}) => request.destination === 'image',
   ({cacheName: 'images'}),
-); 
+);  */
 
 // Etc.
 registerRoute(
