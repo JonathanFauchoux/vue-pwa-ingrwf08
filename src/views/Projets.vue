@@ -2,15 +2,34 @@
   <div class="home">
     <img alt="Vue logo" src="@/assets/logo.jpg" id="vue-logo">
       <h2>Belombre<span style="font-weight : 300">Hand</span>Made</h2>
-      <input placeholder="Ajouter ici..." type="text" v-model="myTodo" /><div class="button" @click.prevent.stop="addToDo">Add</div>
-    <div v-if="errors !== ''" id="errors">{{ errors }}</div>
+      <div class="form">
+        <label for="title">Titre du projet</label>
+        <input placeholder="Ajouter ici..." type="text" v-model="titre" /> 
+      </div>
+      
+      <div class="form">
+        <label for="title"  >Description du projet</label>
+        <textarea id="w3review" name="w3review" rows="4" cols="42" v-model="message"></textarea>
+      </div>
+      
+      <div class="form">
+        <label for="title">Lien du projet</label>
+        <input placeholder="https://..." type="text" v-model="lien" />
+      </div>
 
-    <div class="liste" v-if="this.$store.getters.getItems && this.$store.getters.getItems.length > 0">
-      <div class="title">Todo Projet & Achat</div>
+      <div class="button" @click.prevent.stop="addToDo">Add</div>
 
-      <div class="item" v-for="item in this.$store.getters.getItems" :key="item.id">
-        <h5 class="item-text">{{ item.title }}</h5>
-        <button class="deleteBtn" @click="deleteItem(item.id)"></button>
+      <div v-if="errors !== ''" id="errors">{{ errors }}</div>
+
+    <div class="liste" v-if="this.$store.getters.getProjets && this.$store.getters.getProjets.length > 0">
+      <div class="title">Projets</div>
+
+      <div class="itemProjet" v-for="item in this.$store.getters.getProjets" :key="item.id">
+        <h4 class="item-text">{{ item.title }}</h4>
+        <p>{{ item.message }}</p>
+        <a :href="item.lien">{{ item.lien }}</a>
+        <p>créé le : {{ item.created_at | heure(item.created_at) }}</p>
+        <button class="deleteBtn" @click="deleteItemProjet(item.id)"></button>
       </div>
     </div>
   </div>
@@ -20,38 +39,51 @@
 import { db } from '@/main'
 
 export default {
-  name: 'Home',
+  name: 'projets',
   beforeCreate: function () {
-    this.$store.dispatch('setItems')
+    this.$store.dispatch('setProjets')
   },
   data: function () {
     return {
-      myTodo: '',
+      titre: '',
+      message: '',
+      lien: '',
       errors: ''
     }
+  },
+  filters:{
+      heure(value) {
+        let time = new Date(value);
+     // return time.getDay()+"/"+time.getMonth()+"/"+time.getYear()+" à "+time.getHours()+":"+time.getMinutes()
+      return time.toLocaleString('fr-FR')
+      }
   },
   methods: {
     addToDo: function () {
       this.errors = ''
 
       if (this.myTodo !== '') {
-        db.collection('items').add({
-          title: this.myTodo,
+        db.collection('projets').add({
+          title: this.titre,
+          message: this.message,
+          lien: this.lien,
           created_at: Date.now()
         }).then((response) => {
           if (response) {
-            this.myTodo = ''
+            this.titre = ""
+            this.message = ""
+            this.lien = ""
           }
         }).catch((error) => {
           this.errors = error
         })
       } else {
-        this.errors = 'Merci de bien définir la tâche ci dessus'
+        this.errors = 'Merci de bien définir le projet ci dessus'
       }
     },
-    deleteItem: function (id) {
+    deleteItemProjet: function (id) {
       if (id) {
-        db.collection("items").doc(id).delete().then(function() {
+        db.collection("projets").doc(id).delete().then(function() {
             console.log("Document successfully deleted!");
         }).catch(function(error) {
             this.errors = error
@@ -64,7 +96,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 * {
   box-sizing:border-box;
 }
@@ -90,7 +123,7 @@ button {
   margin:0 0 10px;
   padding:7px;
 }
-input[type=text] {
+input[type=text], textarea {
   width: 100%;
   padding: 10px 10px;
   margin: 8px 0;
@@ -102,6 +135,17 @@ input[type=text] {
 }
 input {
   font-size:12px;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin: .5rem;
+}
+p{
+  text-align: start;
 }
 
 .button {
@@ -119,7 +163,13 @@ input {
   align-items: center;
   justify-content: center;
 }
+
 .deleteBtn{
+  position: relative;
+  bottom: 10px;
+  left: 93%;
+
+
   background:white;
   border: 1px solid rgba(173, 15, 15, .8) ;
   border-radius: 15px;
@@ -159,22 +209,23 @@ input {
 .liste{
   width: 100%;
 }
-.item{
+.itemProjet{
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 
   width: 100%;
   border: 1px solid black;
   border-radius: 15px;
-  padding: 0 .5rem;
+  padding: 0 1rem;
   margin: 1rem 0;
 
 }
 .item-text{
-  padding: 0 1rem;
+  
   text-align: start;
-  width: 85%;
+  width: 100%;
 }
 #errors {
   background:#a52222;

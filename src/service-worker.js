@@ -1,4 +1,4 @@
-const version = 8
+/* const version = 8
 const oldVersion = version -1
 
 
@@ -15,7 +15,7 @@ self.addEventListener('activate', event => {
     caches.delete('design' + oldVersion),
     caches.delete('api' + oldVersion)
   )
-})
+}) */
 /*
 workbox.setConfig({
     debug: false
@@ -68,7 +68,9 @@ workbox.setConfig({
 
   // test doc
 
-  // These JavaScript module imports need to be bundled:
+
+  
+  /* These JavaScript module imports need to be bundled:
 import {precacheAndRoute} from 'workbox-precaching';
 import {registerRoute} from 'workbox-routing';
 import {CacheFirst} from 'workbox-strategies';
@@ -80,13 +82,13 @@ precacheAndRoute(self.__WB_MANIFEST);
 /* registerRoute(
   ({request}) => request.destination === 'image',
   new CacheFirst({cacheName: 'images'}),
-); */
+);
 registerRoute(
   ({request}) => request.destination === 'image',
   ({cacheName: 'images'}),
-);
+); */
 
-// Etc.
+/* Etc.
 registerRoute(
   /\.(?:png|gif|jpg|jpeg|svg)$/,
   new CacheFirst({
@@ -111,4 +113,4 @@ registerRoute(
       }),
     ],
   })
-);
+); */
