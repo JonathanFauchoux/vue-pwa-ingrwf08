@@ -1,4 +1,4 @@
-/* const version = 8
+ const version = 8
 const oldVersion = version -1
 
 
@@ -15,7 +15,7 @@ self.addEventListener('activate', event => {
     caches.delete('design' + oldVersion),
     caches.delete('api' + oldVersion)
   )
-}) */
+}) 
 /*
 workbox.setConfig({
     debug: false
