@@ -1,4 +1,4 @@
-const version = 3
+const version = 4
 const oldVersion = version -1
 
 self.addEventListener('install', event =>{
@@ -9,8 +9,8 @@ self.addEventListener('install', event =>{
 self.addEventListener('activate', event => {
   console.log('activate')
   event.waitUntil(
-    caches.delete('design-cache' + oldVersion),
-    caches.delete('api-cache' + oldVersion)
+    caches.delete('design' + oldVersion),
+    caches.delete('api' + oldVersion)
   )
 })
 
