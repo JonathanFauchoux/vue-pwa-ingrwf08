@@ -12,7 +12,13 @@ module.exports = {
         background_color: "#fff",
         short_name: "PWA_ingrwf08",
       },
-  
+      iconPaths:{
+        favicon32: 'src/assets/logo_48.png',
+        favicon16: 'src/assets/logo_48.png',
+        appleTouchIcon: 'src/assets/logo_48.png',
+        maskIcon: 'src/assets/logo_48.png',
+        msTileImage: 'src/assets/logo_48.png'
+      },
       // configure the workbox plugin
       workboxPluginMode: 'InjectManifest',
       workboxOptions: {
