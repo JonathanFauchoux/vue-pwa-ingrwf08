@@ -1,4 +1,4 @@
-const version = 4
+const version = 5
 const oldVersion = version -1
 
 self.addEventListener('install', event =>{
