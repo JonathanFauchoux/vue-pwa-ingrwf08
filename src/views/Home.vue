@@ -72,7 +72,8 @@ export default {
 
 
 .home {
-  width:320px;
+  max-width:600px;
+  padding: 0 .5rem;
   margin:auto;
   display: flex;
   flex-direction: column;
@@ -98,7 +99,7 @@ input[type=text] {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  background-color: rgba(2, 177, 11, 0.2);
+  background-color: rgba(14, 140, 140, 0.2);
 }
 input {
   font-size:12px;
@@ -107,7 +108,7 @@ input {
 .button {
   width: 50%;
   height: 2rem;
-  background:#43b823;
+  background:#0E8C8C;
   border:1px solid transparent;
   text-transform:uppercase;
   color:#fff;
@@ -170,6 +171,9 @@ input {
   padding: 0 .5rem;
   margin: 1rem 0;
 
+}
+.item:nth-child(odd) {
+  background: rgba(15, 150, 150, 0.2);
 }
 .item-text{
   padding: 0 1rem;

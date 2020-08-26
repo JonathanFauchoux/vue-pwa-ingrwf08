@@ -2,15 +2,15 @@
 module.exports = {
     // ...other vue-cli plugin options...
     pwa: {
-      name: 'My App',
-      themeColor: '#4DBA87',
+      name: 'BelombreHandMade',
+      themeColor: '#0F9696',
       
       msTileColor: '#000000',
       appleMobileWebAppCapable: 'yes',
       appleMobileWebAppStatusBarStyle: 'black',
       manifestOptions: {
         background_color: "#fff",
-        short_name: "PWA_ingrwf08",
+        short_name: "BHM",
       },
       iconPaths:{
         favicon32: 'src/assets/logo_96.png',

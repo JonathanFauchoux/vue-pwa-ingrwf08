@@ -27,8 +27,8 @@
       <div class="itemProjet" v-for="item in this.$store.getters.getProjets" :key="item.id">
         <h4 class="item-text">{{ item.title }}</h4>
         <p>{{ item.message }}</p>
-        <a :href="item.lien">{{ item.lien }}</a>
-        <p>créé le : {{ item.created_at | heure(item.created_at) }}</p>
+        <a class="link" :href="item.lien">lien projet</a>
+        <p class="time">créé le : {{ item.created_at | heure(item.created_at) }}</p>
         <button class="deleteBtn" @click="deleteItemProjet(item.id)"></button>
       </div>
     </div>
@@ -97,6 +97,10 @@ export default {
 </script>
 
 <style scoped>
+:root {
+  --color: ;
+}
+
 
 * {
   box-sizing:border-box;
@@ -105,7 +109,8 @@ export default {
 
 
 .home {
-  width:320px;
+  max-width:600px;
+  padding: 0 .5rem;
   margin:auto;
   display: flex;
   flex-direction: column;
@@ -131,7 +136,7 @@ input[type=text], textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  background-color: rgba(2, 177, 11, 0.2);
+  background-color: rgba(15, 150, 150, 0.2);
 }
 input {
   font-size:12px;
@@ -151,7 +156,7 @@ p{
 .button {
   width: 50%;
   height: 2rem;
-  background:#43b823;
+  background:#0F9696;
   border:1px solid transparent;
   text-transform:uppercase;
   color:#fff;
@@ -204,10 +209,13 @@ p{
   font-weight:700;
   padding-bottom: .5rem;
  
-  border-bottom:1px solid #666;
+  border-bottom:1px solid #0F9696;
 }
 .liste{
   width: 100%;
+}
+.itemProjet:nth-child(odd) {
+  background: rgba(15, 150, 150, 0.2);
 }
 .itemProjet{
   display: flex;
@@ -226,6 +234,19 @@ p{
   
   text-align: center;
   width: 100%;
+}
+.time{
+  font-size: .8rem;
+}
+.link{
+  padding: .3rem .9rem;
+  text-decoration: none;
+  font-size: .85rem;
+  text-transform: capitalize;
+  border: 1px solid #0F9696;
+  border-radius: 5px;
+  color:#0F9696 ;
+  background-color: white;
 }
 #errors {
   background:#a52222;
