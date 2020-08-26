@@ -32,13 +32,24 @@ workbox.setConfig({
       ]
     })
   );
-  
   workbox.routing.registerRoute(
+    /\.(?:css|html|js)$/,
+    workbox.strategies.staleWhileRevalidate({
+      cacheName: "fichiers",
+      plugins: [
+        new workbox.expiration.Plugin({
+          maxEntries: 60,
+          maxAgeSeconds: 30 * 24 * 60 * 60 // 30 jours
+        })
+      ]
+    })
+  );
+ /*  workbox.routing.registerRoute(
     "https://some-fancy-api.com",
     workbox.strategies.NetworkFirst({
       cacheName: "api"
     })
-  );
+  ); */
   
   workbox.routing.registerRoute(
     new RegExp("https://fonts.(?:googleapis|gstatic).com/(.*)"),
